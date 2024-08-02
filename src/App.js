@@ -5,30 +5,24 @@ import { useEffect, useState } from 'react';
 //state are the variables to store values in react component
 function App() {
 
-  const [users,setUsers] = useState([])
-
-  useEffect(function(){
-
-    fetch('https://dummyjson.com/users?select=firstName').then((response)=>response.json()).then((data)=>{
-      setUsers(data.users)
-    })
-
-  },[])
-
-  let count = 1
+  const [login,setLogin] = useState(true)
 
   return (
     <div className="App p-4">
-     
-      <ul>
-        {
-        users.map(function (item) {
-          return <li key={count++}>
-                    <div>{item.firstName}</div>
-                    <div></div>
-                  </li>
-        })}
-      </ul>
+      {(login==false)?<div className='border rounded p-4 w-50'>
+        <h1>Login</h1>
+        <p>login form</p>
+      </div>:<div className='border rounded p-4 w-50'>
+        <h1>Dashboard</h1>
+        <p>Dashboard area</p>
+      </div>}
+      
+      <hr></hr>
+      <button onClick={()=>{setLogin(true)}}>Login True</button>
+      <button onClick={()=>{setLogin(false)}}>Login False</button>
+
+      
+
     </div>
   );
 }
